@@ -17,24 +17,24 @@ public class loginUserImpt implements loginUserDao {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
-            // 1.加载驱动
-            // 2.连接数据库
+            // 1.????????
+            // 2.?????????
             conn = JdbcUtil.getConn();
-            // 3.创建语句
+            // 3.???????
             ps = conn.prepareStatement(sql);
-            // 遍历参数
+            // ????????
             for (int i = 0; i < params.length; i++) {
                 // ps.setString(1, stu.getName());
                 // ps.setInt(2, stu.getAge());
                 ps.setObject(i + 1, params[i]);
 
             }
-            // 4.执行语句
+            // 4.??????
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            // 5.释放资源
+            // 5.??????
             JdbcUtil.close(conn, ps, null);
         }
         return 0;
@@ -65,14 +65,14 @@ public class loginUserImpt implements loginUserDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            // 1.加载驱动
-            // 2.连接数据库
+            // 1.????????
+            // 2.?????????
             conn = JdbcUtil.getConn();
-            // 3.创建语句
+            // 3.???????
             String sql = "select * from user where useName = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, useName);
-            // 4.执行语句
+            // 4.??????
             rs = ps.executeQuery();
             if (rs.next()) {
                 user usr = new user(rs.getString("useName"),rs.getString("passWord"),
@@ -82,7 +82,7 @@ public class loginUserImpt implements loginUserDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            // 5.释放资源
+            // 5.??????
             JdbcUtil.close(conn, ps, rs);
         }
         return null;
@@ -94,16 +94,16 @@ public class loginUserImpt implements loginUserDao {
         Statement st = null;
         ResultSet rs = null;
         try {
-            // 1.加载驱动
-            // 2.连接数据库
+            // 1.????????
+            // 2.?????????
             conn = JdbcUtil.getConn();
-            // 3.创建语句
+            // 3.???????
             st = conn.createStatement();
             String sql = "select * from user ";
             System.out.println(sql);
-            // 4.执行语句
+            // 4.??????
             rs = st.executeQuery(sql);
-            // 创建一个集合
+            // ???????????
             List<user> list = new ArrayList<user>();
             while (rs.next()) {
                 user usr = new user(
@@ -120,5 +120,47 @@ public class loginUserImpt implements loginUserDao {
             JdbcUtil.close(conn, st, rs);
         }
         return null;
+    }
+
+    public boolean existNull(String useName){
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            // 1.????????
+            // 2.?????????
+            conn = JdbcUtil.getConn();
+            // 3.???????
+            String sql = "select * from user where useName = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, useName);
+            // 4.??????
+            rs = ps.executeQuery();
+            if (rs==null){
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 5.??????
+            JdbcUtil.close(conn, ps, rs);
+        }
+        return false;
+
+    }
+
+    @Override
+    public boolean find(String useName, String passWord) {
+        if (!existNull(useName)) {
+            return false;
+        }
+
+          user account = get(useName);
+
+        if (account==null&&account.getPassWord().equals(passWord)){
+            return true;
+        }
+
+        return false;
     }
 }

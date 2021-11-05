@@ -12,5 +12,6 @@
 </head>
 <body>
 <h1>這是一個測試</h1>
+${pageContext.request.contextPath}
 </body>
 </html>

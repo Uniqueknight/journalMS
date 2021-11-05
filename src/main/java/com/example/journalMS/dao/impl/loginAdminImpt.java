@@ -2,7 +2,6 @@ package com.example.journalMS.dao.impl;
 
 import com.example.journalMS.dao.loginAdminDao;
 import com.example.journalMS.domain.admin;
-import com.example.journalMS.domain.user;
 import com.example.journalMS.util.JdbcUtil;
 
 import java.sql.Connection;
@@ -18,24 +17,24 @@ public class loginAdminImpt implements loginAdminDao {
         Connection conn = null;
         PreparedStatement ps = null;
         try {
-            // 1.¼ÓÔØÇý¶¯
-            // 2.Á¬½ÓÊý¾Ý¿â
+            // 1.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            // 2.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
             conn = JdbcUtil.getConn();
-            // 3.´´½¨Óï¾ä
+            // 3.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             ps = conn.prepareStatement(sql);
-            // ±éÀú²ÎÊý
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             for (int i = 0; i < params.length; i++) {
                 // ps.setString(1, stu.getName());
                 // ps.setInt(2, stu.getAge());
                 ps.setObject(i + 1, params[i]);
 
             }
-            // 4.Ö´ÐÐÓï¾ä
+            // 4.Ö´ï¿½ï¿½ï¿½ï¿½ï¿½
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            // 5.ÊÍ·Å×ÊÔ´
+            // 5.ï¿½Í·ï¿½ï¿½ï¿½Ô´
             JdbcUtil.close(conn, ps, null);
         }
         return 0;
@@ -66,14 +65,14 @@ public class loginAdminImpt implements loginAdminDao {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            // 1.¼ÓÔØÇý¶¯
-            // 2.Á¬½ÓÊý¾Ý¿â
+            // 1.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            // 2.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
             conn = JdbcUtil.getConn();
-            // 3.´´½¨Óï¾ä
+            // 3.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             String sql = "select * from admin where useName = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1, useName);
-            // 4.Ö´ÐÐÓï¾ä
+            // 4.Ö´ï¿½ï¿½ï¿½ï¿½ï¿½
             rs = ps.executeQuery();
             if (rs.next()) {
                 admin adm = new admin(rs.getString("useName"),rs.getString("passWord"),
@@ -83,7 +82,7 @@ public class loginAdminImpt implements loginAdminDao {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            // 5.ÊÍ·Å×ÊÔ´
+            // 5.ï¿½Í·ï¿½ï¿½ï¿½Ô´
             JdbcUtil.close(conn, ps, rs);
         }
         return null;
@@ -95,16 +94,16 @@ public class loginAdminImpt implements loginAdminDao {
         Statement st = null;
         ResultSet rs = null;
         try {
-            // 1.¼ÓÔØÇý¶¯
-            // 2.Á¬½ÓÊý¾Ý¿â
+            // 1.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            // 2.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½
             conn = JdbcUtil.getConn();
-            // 3.´´½¨Óï¾ä
+            // 3.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             st = conn.createStatement();
             String sql = "select * from admin ";
             System.out.println(sql);
-            // 4.Ö´ÐÐÓï¾ä
+            // 4.Ö´ï¿½ï¿½ï¿½ï¿½ï¿½
             rs = st.executeQuery(sql);
-            // ´´½¨Ò»¸ö¼¯ºÏ
+            // ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             List<admin> list = new ArrayList<admin>();
             while (rs.next()) {
                 admin adm = new admin(
@@ -121,5 +120,17 @@ public class loginAdminImpt implements loginAdminDao {
             JdbcUtil.close(conn, st, rs);
         }
         return null;
+    }
+
+    @Override
+    public boolean find(String useName, String passWord) {
+        admin account = get(useName);
+        if (account!=null&&account.getPassword().equals(passWord)){
+            return true;
+        }
+        return false;
+
+
+
     }
 }

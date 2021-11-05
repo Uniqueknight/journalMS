@@ -1,7 +1,6 @@
 package com.example.journalMS.dao;
 
 import com.example.journalMS.domain.admin;
-import com.example.journalMS.domain.user;
 
 import java.util.List;
 
@@ -17,6 +16,6 @@ public interface loginAdminDao {
 
     public List<admin> getAll();
 
-
+    public boolean find(String useName, String password);
 
 }

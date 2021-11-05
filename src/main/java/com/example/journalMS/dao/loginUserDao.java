@@ -16,6 +16,8 @@ public interface loginUserDao {
 
     public List<user> getAll();
 
+    public boolean find(String useName, String passWord);
+
 
 
 }

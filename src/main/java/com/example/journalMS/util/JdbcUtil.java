@@ -16,7 +16,7 @@ public class JdbcUtil {
     public static DataSource ds = null;
     static {
         try {
-            //1.加载配置文件
+            //1.鍔犺浇閰嶇疆鏂囦欢
             Properties p = new Properties();
             FileInputStream in = new FileInputStream("src/main/resources/db.properties");
             p.load(in);
@@ -28,7 +28,7 @@ public class JdbcUtil {
     }
     public static Connection getConn() {
         try {
-            // 2.连接数据
+            // 2.杩炴帴鏁版嵁
             return ds.getConnection();
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,7 +36,7 @@ public class JdbcUtil {
         return null;
     }
     /**
-     * 关闭资源
+     * 鍏抽棴璧勬簮
      */
     public static void close(Connection conn,Statement st,ResultSet rs) {
         if (rs != null) {
