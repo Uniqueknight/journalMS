@@ -27,11 +27,16 @@ public class loginServiceImpt implements loginService {
         if (account.equals("user")) {
             loginUserImpt userImpt = new loginUserImpt();
             if (userImpt.find(userName,passWord)){
-
+                //登陆成功就要跳转登录界面
+                //现在的问题是如何判断登陆成功与登陆失败
+                System.out.println("爷成功了");
                 // TODO: 2021/11/5
 
                 return true;
             }else {
+                //登录失败就进行提示，并且返回原界面（刷新即可）
+                System.out.println("5555");
+                // TODO: 2021/11/5
                 return false;
             }
         }else {
@@ -42,6 +47,9 @@ public class loginServiceImpt implements loginService {
 
                 return true;
             }else {
+
+                // TODO: 2021/11/5
+
                 return false;
             }
         }

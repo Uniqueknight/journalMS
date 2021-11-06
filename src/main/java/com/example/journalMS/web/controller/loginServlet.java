@@ -18,10 +18,10 @@ public class loginServlet extends HttpServlet {
         loginServiceImpt loginServiceImpt = new loginServiceImpt();
         boolean num = loginServiceImpt.userlogin(request,response);
 
-        loginUserImpt userImpt = new loginUserImpt();
-        userImpt.get("root");
-        PrintWriter writer = response.getWriter();
-        writer.println(userImpt.get("root"));
+//        loginUserImpt userImpt = new loginUserImpt();
+//        userImpt.get("root");
+//        PrintWriter writer = response.getWriter();
+//        writer.println(userImpt.get("root"));
 
 
 

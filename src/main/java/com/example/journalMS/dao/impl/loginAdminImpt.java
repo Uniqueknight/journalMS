@@ -2,6 +2,7 @@ package com.example.journalMS.dao.impl;
 
 import com.example.journalMS.dao.loginAdminDao;
 import com.example.journalMS.domain.admin;
+import com.example.journalMS.domain.user;
 import com.example.journalMS.util.JdbcUtil;
 
 import java.sql.Connection;
@@ -44,7 +45,7 @@ public class loginAdminImpt implements loginAdminDao {
     @Override
     public void save(admin adm) {
         String sql = "insert into admin(useName,passWord,lastLogin) values (?,?,?)";
-        this.executeUpdate(sql, adm.getUsename(), adm.getPassword(), adm.getLastLogin());
+        this.executeUpdate(sql, adm.getUseName(), adm.getPassWord(), adm.getLastLogin());
     }
 
     @Override
@@ -56,7 +57,7 @@ public class loginAdminImpt implements loginAdminDao {
     @Override
     public void update(String useName, admin adm) {
         String sql = "update admin set useName=?,passWord=?,lastLogin=? where useName = ?";
-        this.executeUpdate(sql, adm.getUsename(), adm.getPassword(), adm.getLastLogin(), useName);
+        this.executeUpdate(sql, adm.getUseName(), adm.getPassWord(), adm.getLastLogin(), useName);
     }
 
     @Override
@@ -122,15 +123,47 @@ public class loginAdminImpt implements loginAdminDao {
         return null;
     }
 
+    public boolean existX(String useName){
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            conn = JdbcUtil.getConn();
+            String sql = "select * from user where useName = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,useName);
+            rs = ps.executeQuery();
+            if (rs.next())
+                return true;
+            else
+                return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 5.??????
+            JdbcUtil.close(conn, ps, rs);
+        }
+
+        return false;
+    }
+
     @Override
     public boolean find(String useName, String passWord) {
+        if (!existX(useName)) {
+            return false;
+        }
+
         admin account = get(useName);
-        if (account!=null&&account.getPassword().equals(passWord)){
+
+        if (account.getPassWord().equals(passWord)){
             return true;
         }
+
         return false;
-
-
-
     }
+
+
+
+
 }

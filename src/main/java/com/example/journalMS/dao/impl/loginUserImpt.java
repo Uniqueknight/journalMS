@@ -4,10 +4,7 @@ import com.example.journalMS.dao.loginUserDao;
 import com.example.journalMS.domain.user;
 import com.example.journalMS.util.JdbcUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,42 +119,40 @@ public class loginUserImpt implements loginUserDao {
         return null;
     }
 
-    public boolean existNull(String useName){
+    public boolean existX(String useName){
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
+
         try {
-            // 1.????????
-            // 2.?????????
             conn = JdbcUtil.getConn();
-            // 3.???????
             String sql = "select * from user where useName = ?";
             ps = conn.prepareStatement(sql);
-            ps.setString(1, useName);
-            // 4.??????
+            ps.setString(1,useName);
             rs = ps.executeQuery();
-            if (rs==null){
+            if (rs.next())
                 return true;
-            }
+            else
+                return false;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             // 5.??????
             JdbcUtil.close(conn, ps, rs);
         }
-        return false;
 
+        return false;
     }
 
     @Override
     public boolean find(String useName, String passWord) {
-        if (!existNull(useName)) {
+        if (!existX(useName)) {
             return false;
         }
 
           user account = get(useName);
 
-        if (account==null&&account.getPassWord().equals(passWord)){
+        if (account.getPassWord().equals(passWord)){
             return true;
         }
 

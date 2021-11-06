@@ -29,20 +29,29 @@ public class admin extends Ahuman {
                 '}';
     }
 
-    public String getUsename() {
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getUseName() {
         return useName;
     }
 
-    public void setUsename(String usename) {
-        this.useName = usename;
+    public void setUseName(String useName) {
+        this.useName = useName;
     }
 
-    public String getPassword() {
+    public String getPassWord() {
         return passWord;
     }
 
-    public void setPassword(String password) {
-        this.passWord = password;
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
     public String getLastLogin() {
