@@ -25,11 +25,10 @@
     <div class="base">
 
         <form action="${pageContext.request.contextPath}/loginServlet" method="">
-            <table border="" cellspacing="" cellpadding="">
+            <table >
                 <tr>
                     <td>用户名</td>
                     <td><input type="text" name="userName" placeholder="请输入用户名"/></td>
-                </tr>
                 <tr>
                     <td>密码</td>
                     <td><input type="password" name="passWord" placeholder="请输入密码"/></td>

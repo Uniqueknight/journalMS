@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+
+
+body{
+	background-color: #d3d3d3;
+}
+
+.main{
+	margin: auto;
+	height: 500px;
+	width: 800px;
+	clear: both;
+	/* background-color: #ffc000; */
+}
+
+.head{
+	margin: 80px 80px 40px;
+	height: 80px;
+	
+	background-color:#4472c4
+}
+
+.head h1{
+	
+	color: #f1f1f1;
+	text-align: center;
+	line-height: 80px;
+	
+}
+
+.base{
+	margin: auto;
+	border: 80px 40px;
+	height: 280px;
+	width: 80%;
+	background-color: #d0a16b;
+}
+
+.base form{
+	height: 280px;
+	
+}
+
+.base table{
+	margin: auto;
+	vertical-align: middle;
+	padding: 20px;
+	position: relative;
+	top: 40px;
+	
+}
+
+table td{
+	padding: 3px;
+}
+
+#upLogin{
+	margin: 0 10px;
+}
+
+#upRegiseter{
+	margin: 0 10px;
+}

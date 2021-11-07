@@ -9,7 +9,7 @@ import java.io.IOException;
 public class loginUIServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/loginUI.jsp").forward(request, response);
+        request.getRequestDispatcher("/loginUI.jsp").forward(request, response);
     }
 
     @Override
