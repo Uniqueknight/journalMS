@@ -17,6 +17,8 @@ public class user extends Ahuman{
         this.loginTime = loginTime;
     }
 
+
+
     public String getUseName() {
         return useName;
     }

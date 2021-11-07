@@ -11,26 +11,28 @@
 <head>
     <meta charset="utf-8">
     <title>期刊管理系统</title>
-    <link rel="stylesheet" href="CSS/index.css">
+    <link rel="stylesheet" href="CSS/loginUI.css">
 </head>
 <body>
 
+
+
 <div class="main">
     <div class="head">
-        期刊管理系统
+        <h1>期刊管理系统</h1>
     </div>
 
     <div class="base">
 
-        <form action="${pageContext.request.contextPath}/FFF" method="post">
+        <form action="${pageContext.request.contextPath}/loginServlet" method="">
             <table border="" cellspacing="" cellpadding="">
                 <tr>
                     <td>用户名</td>
-                    <td><input type="text" name="userName" /></td>
+                    <td><input type="text" name="userName" placeholder="请输入用户名"/></td>
                 </tr>
                 <tr>
                     <td>密码</td>
-                    <td><input type="password" name="passWord" /></td>
+                    <td><input type="password" name="passWord" placeholder="请输入密码"/></td>
                 </tr>
 
 
@@ -44,14 +46,12 @@
 
                 <tr  align="center">
                     <td colspan="2" >
-                        <input type="button"  name="注册" value="注册" onclick=""/>
-                        <input type="submit"  name="登录" value="登录" />
+                        <input type="button" id="upRegiseter"  name="注册" value="注册" />
+                        <input type="submit" id="upLogin" name="登录" value="登录"/>
                     </td>
                 </tr>
             </table>
         </form>
-
-
 
 
     </div>
@@ -60,4 +60,3 @@
 
 </body>
 </html>
-
