@@ -12,4 +12,14 @@ public class registerServiceImpt implements registerService {
     public boolean register(HttpServletRequest request, HttpServletResponse response) {
         return false;
     }
+
+    @Override
+    public boolean checkUserName(String name) {
+        return false;
+    }
+
+    @Override
+    public boolean checkPassWord(String name) {
+        return false;
+    }
 }

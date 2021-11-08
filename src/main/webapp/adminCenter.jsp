@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <title>管理中心</title>
-    <link rel="stylesheet" href="CSS/adminCenter.css">
+    <link rel="stylesheet" type="text/css" href="CSS/adminCenter.css">
 </head>
 <body>
 

@@ -130,7 +130,7 @@ public class loginAdminImpt implements loginAdminDao {
 
         try {
             conn = JdbcUtil.getConn();
-            String sql = "select * from user where useName = ?";
+            String sql = "select * from admin where useName = ?";
             ps = conn.prepareStatement(sql);
             ps.setString(1,useName);
             rs = ps.executeQuery();

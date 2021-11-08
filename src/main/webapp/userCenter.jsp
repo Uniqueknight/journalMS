@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <title>用户中心</title>
-    <link rel="stylesheet" href="CSS/userCenter.css">
+    <link rel="stylesheet" type="text/css" href="CSS/userCenter.css">
 </head>
 <body>
 

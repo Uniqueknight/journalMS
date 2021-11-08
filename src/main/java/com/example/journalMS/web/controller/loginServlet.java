@@ -11,7 +11,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "loginServlet", value = "/loginServlet")
+@WebServlet(name = "loginServlet",value = "/loginServlet")
 public class loginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,7 +32,6 @@ public class loginServlet extends HttpServlet {
             request.getRequestDispatcher("callBack.jsp").forward(request, response);
             return;
 
-            // TODO: 2021/11/7
         }
 
         if (account.equals("user")) {
@@ -41,23 +40,35 @@ public class loginServlet extends HttpServlet {
                 //登陆成功就要跳转登录界面
                 //现在的问题是如何判断登陆成功与登陆失败
                 System.out.println("爷成功了");
+                request.getRequestDispatcher("/userCenter").forward(request,response);
                 // TODO: 2021/11/5
+                return;
 
             }else {
                 //登录失败就进行提示，并且返回原界面（刷新即可）
                 System.out.println("5555");
+                String message = String.format(
+                        "对不起，用户名或密码有误！！请重新登录！2秒后为您自动跳到登录页面！！<meta http-equiv='refresh' content='2;url=%s'",
+                        request.getContextPath()+"/login");
+                request.setAttribute("message",message);
+                request.getRequestDispatcher("/callBack.jsp").forward(request,response);
                 // TODO: 2021/11/5
             }
         }else {//管理员登录
+
             loginAdminImpt adminImpt = new loginAdminImpt();
             if (adminImpt.find(userName,passWord)){
-
+                System.out.println("这是管理员登录");
+                request.getRequestDispatcher("/adminCenter").forward(request,response);
                 // TODO: 2021/11/5
 
             }else {
-
-                // TODO: 2021/11/5
-
+                System.out.println("5555");
+                String message = String.format(
+                        "对不起，用户名或密码有误！！请重新登录！2秒后为您自动跳到登录页面！！<meta http-equiv='refresh' content='2;url=%s'",
+                        request.getContextPath()+"/login");
+                request.setAttribute("message",message);
+                request.getRequestDispatcher("/callBack.jsp").forward(request,response);
             }
         }
 

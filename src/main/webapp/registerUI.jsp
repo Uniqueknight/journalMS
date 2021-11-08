@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <title>期刊管理系统</title>
-    <link rel="stylesheet" href="CSS/registerUI.css">
+    <link rel="stylesheet" type="text/css" href="CSS/registerUI.css">
 </head>
 <body>
 
@@ -38,8 +38,8 @@
                 <tr align="center">
                     <td colspan="2">
 
-                        <input type="submit" id="upRegister" name="" value="注册"/>
-                        <button type="button" id="upReturn" name="" value="">返回</button>
+                        <input type="submit" id="upRegister" name="" value="注册" onclick="window.location.href='${pageContext.request.contextPath}/"/>
+                        <button type="button" id="upReturn" name="" value="" onclick="window.location.href='${pageContext.request.contextPath}/login">返回</button>
                     </td>
                 </tr>
             </table>

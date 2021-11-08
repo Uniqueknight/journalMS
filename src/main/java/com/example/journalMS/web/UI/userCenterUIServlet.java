@@ -9,7 +9,7 @@ import java.io.IOException;
 public class userCenterUIServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("/userCenter.jsp").forward(request, response);
     }
 
     @Override
