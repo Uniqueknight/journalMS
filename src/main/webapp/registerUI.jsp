@@ -29,17 +29,17 @@
                 <tr><th colspan="2">注册界面</th></tr>
                 <tr>
                     <td>用户名</td>
-                    <td><input type="text" id="" value="" placeholder="请输入用户名"/></td>
+                    <td><input type="text" name="userName" placeholder="请输入用户名"/></td>
                 </tr>
                 <tr>
                     <td>密码</td>
-                    <td><input type="password" name="" placeholder="请输入密码"/></td>
+                    <td><input type="password" name="passWord" placeholder="请输入密码"/></td>
                 </tr>
                 <tr align="center">
                     <td colspan="2">
 
-                        <input type="submit" id="upRegister" name="" value="注册" onclick="window.location.href='${pageContext.request.contextPath}/"/>
-                        <button type="button" id="upReturn" name="" value="" onclick="window.location.href='${pageContext.request.contextPath}/login">返回</button>
+                        <input type="submit" id="upRegister" name="" value="注册"/>
+                        <button type="button" id="upReturn" name="" value="" onclick="window.location.href='${pageContext.request.contextPath}/login'">返回</button>
                     </td>
                 </tr>
             </table>

@@ -47,6 +47,7 @@
 
         <div id="content">
             <!-- JSP预备！！！呼呼呼！！！ -->
+            <jsp:include page="Part/Show_select.jsp"/>
         </div>
 
 

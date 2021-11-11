@@ -10,7 +10,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>出错了！！！</title>
+  <title>有新消息！！！</title>
 </head>
 <body>
 ${message}

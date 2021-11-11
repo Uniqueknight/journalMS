@@ -10,6 +10,13 @@ public class user extends Ahuman{
 
     }
 
+    public user(String useName, String passWord) {
+        this.type = "user";
+        this.useName = useName;
+        this.passWord = passWord;
+        this.loginTime = "1";
+    }
+
     public user(String useName, String passWord, String loginTime) {
         this.type = "user";
         this.useName = useName;

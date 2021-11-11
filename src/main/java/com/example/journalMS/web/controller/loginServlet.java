@@ -40,8 +40,10 @@ public class loginServlet extends HttpServlet {
                 //登陆成功就要跳转登录界面
                 //现在的问题是如何判断登陆成功与登陆失败
                 System.out.println("爷成功了");
+                user usr = new user(userName, passWord);
+                request.getSession().setAttribute("account",usr);
+
                 request.getRequestDispatcher("/userCenter").forward(request,response);
-                // TODO: 2021/11/5
                 return;
 
             }else {
@@ -52,16 +54,16 @@ public class loginServlet extends HttpServlet {
                         request.getContextPath()+"/login");
                 request.setAttribute("message",message);
                 request.getRequestDispatcher("/callBack.jsp").forward(request,response);
-                // TODO: 2021/11/5
             }
         }else {//管理员登录
 
             loginAdminImpt adminImpt = new loginAdminImpt();
             if (adminImpt.find(userName,passWord)){
                 System.out.println("这是管理员登录");
-                request.getRequestDispatcher("/adminCenter").forward(request,response);
-                // TODO: 2021/11/5
+                user usr = new user(userName, passWord);
+                request.getSession().setAttribute("account",usr);
 
+                request.getRequestDispatcher("/adminCenter").forward(request,response);
             }else {
                 System.out.println("5555");
                 String message = String.format(
