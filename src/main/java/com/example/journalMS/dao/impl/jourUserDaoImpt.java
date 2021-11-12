@@ -1,8 +1,8 @@
 package com.example.journalMS.dao.impl;
 
-import com.example.journalMS.dao.userInfoDao;
+import com.example.journalMS.dao.jourUserDao;
+import com.example.journalMS.domain.jourUser;
 import com.example.journalMS.domain.user;
-import com.example.journalMS.domain.userInfo;
 import com.example.journalMS.util.JdbcUtil;
 
 import java.sql.Connection;
@@ -12,7 +12,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class userInfoDaoImpt implements userInfoDao {
+public class jourUserDaoImpt implements jourUserDao {
+
 
     public int executeUpdate(String sql, Object... params) {
         Connection conn = null;
@@ -43,25 +44,25 @@ public class userInfoDaoImpt implements userInfoDao {
 
 
     @Override
-    public void save(userInfo uInfo) {
-        String sql = "insert into userInfo(userName,passWord,sex,email,phone,city,age) values (?,?,?,?,?,?,?)";
-        this.executeUpdate(sql, uInfo.getUserName(), uInfo.getPassWord(), uInfo.getSex(),uInfo.getEmail(),uInfo.getPhone(),uInfo.getCity(),uInfo.getAge());
+    public void save(jourUser jusr) {
+        String sql = "insert into jourUser(jourName,userName,num) values (?,?,?)";
+        this.executeUpdate(sql, jusr.getJourName(), jusr.getUserName(),jusr.getUserName());
     }
 
     @Override
-    public void delete(String userName) {
-        String sql = "delete from userInfo where userName = ?";
-        this.executeUpdate(sql, userName);
+    public void delete(String jourName,String userName) {
+        String sql = "delete from jourUser where jourName = ? and userName = ?";
+        this.executeUpdate(sql, jourName,userName);
     }
 
     @Override
-    public void update(String userName, userInfo uInfo) {
-        String sql = "update userInfo set userName=?,passWord=?,sex=?,email=?,phone=?,city=?,age=? where userName = ?";
-        this.executeUpdate(sql, uInfo.getUserName(), uInfo.getPassWord(), uInfo.getSex(), uInfo.getEmail(),uInfo.getPhone(),uInfo.getCity(),uInfo.getAge(),userName);
+    public void update(String jourName, String userName , jourUser jusr) {
+        String sql = "update jourUser set jourName=?,userName=?,num = ? where jourName = ? and userName = ?";
+        this.executeUpdate(sql, jusr.getJourName(), jusr.getUserName(), jusr.getNum(),jourName,userName);
     }
 
     @Override
-    public userInfo get(String userName) {
+    public jourUser get(String jourName , String userName) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -70,21 +71,16 @@ public class userInfoDaoImpt implements userInfoDao {
             // 2.?????????
             conn = JdbcUtil.getConn();
             // 3.???????
-            String sql = "select * from userinfo where userName = ?";
+            String sql = "select * from jouruser where jourName = ? and userName = ?";
             ps = conn.prepareStatement(sql);
-            ps.setString(1, userName);
+            ps.setString(1, jourName);
+            ps.setString(2, userName);
             // 4.??????
             rs = ps.executeQuery();
             if (rs.next()) {
-                userInfo uInfo = new userInfo(
-                        rs.getNString("userName"),
-                        rs.getNString("passWord"),
-                        rs.getNString("sex"),
-                        rs.getNString("email"),
-                        rs.getNString("phone"),
-                        rs.getNString("city"),
-                        rs.getNString("age"));
-                return uInfo;
+                jourUser jusr = new jourUser(rs.getString("jourName"),rs.getString("userName"),
+                        rs.getString("num"));
+                return jusr;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,7 +92,7 @@ public class userInfoDaoImpt implements userInfoDao {
     }
 
     @Override
-    public List<userInfo> getAll() {
+    public List<jourUser> getAll() {
         Connection conn = null;
         Statement st = null;
         ResultSet rs = null;
@@ -106,22 +102,18 @@ public class userInfoDaoImpt implements userInfoDao {
             conn = JdbcUtil.getConn();
             // 3.???????
             st = conn.createStatement();
-            String sql = "select * from userinfo ";
+            String sql = "select * from jouruser ";
             System.out.println(sql);
             // 4.??????
             rs = st.executeQuery(sql);
             // ???????????
-            List<userInfo> list = new ArrayList<userInfo>();
+            List<jourUser> list = new ArrayList<jourUser>();
             while (rs.next()) {
-                userInfo uInfo = new userInfo(
-                        rs.getNString("userName"),
-                        rs.getNString("passWord"),
-                        rs.getNString("sex"),
-                        rs.getNString("email"),
-                        rs.getNString("phone"),
-                        rs.getNString("city"),
-                        rs.getNString("age"));
-                list.add(uInfo);
+                jourUser jusr = new jourUser(
+                        rs.getString("jourName"),
+                        rs.getString("userName"),
+                        rs.getString("num"));
+                list.add(jusr);
             }
             return list;
 
@@ -133,16 +125,17 @@ public class userInfoDaoImpt implements userInfoDao {
         return null;
     }
 
-    public boolean existX(String userName){
+    public boolean existX(String jourName,String userName){
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
 
         try {
             conn = JdbcUtil.getConn();
-            String sql = "select * from userinfo where userName = ?";
+            String sql = "select * from jouruser where jourName = ? and userName = ?";
             ps = conn.prepareStatement(sql);
-            ps.setString(1,userName);
+            ps.setString(1,jourName);
+            ps.setString(2, userName);
             rs = ps.executeQuery();
             if (rs.next())
                 return true;
@@ -159,18 +152,5 @@ public class userInfoDaoImpt implements userInfoDao {
     }
 
 
-    public boolean find(String useName, String passWord) {
-        if (!existX(useName)) {
-            return false;
-        }
-
-        userInfo account = get(useName);
-
-        if (account.getPassWord().equals(passWord)){
-            return true;
-        }
-
-        return false;
-    }
 
 }

@@ -1,19 +1,31 @@
 <%--
   Created by IntelliJ IDEA.
   User: 79984
-  Date: 2021/11/7
-  Time: 20:19
+  Date: 2021/11/11
+  Time: 10:37
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>有新消息！！！</title>
+    <title>Title</title>
 </head>
 <body>
-${message}
+    WRNXRBB
+
+
+<table>
+    <tr>
+        <td>用户名称</td>
+        <td>${}</td>
+    </tr>
+</table>
+
+
+
+
 
 </body>
 </html>

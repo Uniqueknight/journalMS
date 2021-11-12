@@ -18,6 +18,7 @@ public interface userInfoDao {
 
     public List<userInfo> getAll();
 
+    public boolean existX(String useName);
 
 
 
@@ -28,4 +29,5 @@ public interface userInfoDao {
 
 
 
-}
+
+    }

@@ -2,6 +2,7 @@ package com.example.journalMS.web.controller;
 
 import com.example.journalMS.dao.impl.loginAdminImpt;
 import com.example.journalMS.dao.impl.loginUserImpt;
+import com.example.journalMS.domain.admin;
 import com.example.journalMS.domain.user;
 import com.example.journalMS.service.impl.loginServiceImpt;
 
@@ -40,11 +41,9 @@ public class loginServlet extends HttpServlet {
                 //登陆成功就要跳转登录界面
                 //现在的问题是如何判断登陆成功与登陆失败
                 System.out.println("爷成功了");
-                user usr = new user(userName, passWord);
-                request.getSession().setAttribute("account",usr);
 
+                request.getSession().setAttribute("info",userName);
                 request.getRequestDispatcher("/userCenter").forward(request,response);
-                return;
 
             }else {
                 //登录失败就进行提示，并且返回原界面（刷新即可）
@@ -60,9 +59,7 @@ public class loginServlet extends HttpServlet {
             loginAdminImpt adminImpt = new loginAdminImpt();
             if (adminImpt.find(userName,passWord)){
                 System.out.println("这是管理员登录");
-                user usr = new user(userName, passWord);
-                request.getSession().setAttribute("account",usr);
-
+                request.getSession().setAttribute("info",userName);
                 request.getRequestDispatcher("/adminCenter").forward(request,response);
             }else {
                 System.out.println("5555");

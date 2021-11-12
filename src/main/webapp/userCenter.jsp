@@ -12,6 +12,87 @@
     <meta charset="utf-8">
     <title>用户中心</title>
     <link rel="stylesheet" type="text/css" href="CSS/userCenter.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js">
+    </script>
+    <script>
+        $(document).ready(function () {
+            //用户名文本框绑定失去焦点事件
+
+            $("#checkUInfo").click(function (){
+                alert("qnmd");
+                $.ajax({
+                    url:"uCheckUInfoServlet",
+                    type:"post",
+                    dataType:"text",
+                    success:function (data){
+                        $("#content").html(data);
+                    }
+                })
+            })
+
+            <%--$("#checkUInfo").click(function (){--%>
+            <%--    alert("qnmd");--%>
+            <%--    // $.ajax({--%>
+            <%--    //     url: "uCheckUInfoServlet",--%>
+            <%--    //     type: "post",--%>
+            <%--    //     success:function (data){--%>
+            <%--    //         $("#content").html(data);--%>
+            <%--    //     }--%>
+            <%--    // })--%>
+            <%--})--%>
+
+            <%--$("#checkJournal").click(function (){--%>
+            <%--    // alert("qnmd");--%>
+            <%--    $.ajax({--%>
+            <%--        url: "uCheckJournalServlet",--%>
+            <%--        type: "post",--%>
+            <%--        success:function (data){--%>
+            <%--            $("#content").html(data);--%>
+            <%--        }--%>
+            <%--    })--%>
+            <%--})--%>
+
+            <%--$("#changeUInfo").click(function (){--%>
+            <%--    // alert("qnmd");--%>
+            <%--    $.ajax({--%>
+            <%--        url: "uChangeUInfo",--%>
+            <%--        type: "post",--%>
+            <%--        data:{username:${sessionScope.userName}},--%>
+            <%--        success:function (data){--%>
+            <%--            alert(${sessionScope.userName})--%>
+            <%--            $("#content").html(data);--%>
+            <%--        }--%>
+            <%--    })--%>
+            <%--})--%>
+
+            <%--$("#changeJournal").click(function (){--%>
+            <%--    // alert("qnmd");--%>
+            <%--    $.ajax({--%>
+            <%--        url: "uChangeJournalServlet",--%>
+            <%--        type: "post",--%>
+            <%--        success:function (data){--%>
+            <%--            $("#content").html(data);--%>
+            <%--        }--%>
+            <%--    })--%>
+            <%--})--%>
+
+            <%--$("#deleteJournal").click(function (){--%>
+            <%--    // alert("qnmd");--%>
+            <%--    $.ajax({--%>
+            <%--        url: "uDeleteJournalServlet",--%>
+            <%--        type: "post",--%>
+            <%--        success:function (data){--%>
+            <%--            $("#content").html(data);--%>
+            <%--        }--%>
+            <%--    })--%>
+            <%--})--%>
+
+
+        });
+
+
+
+    </script>
 </head>
 <body>
 
@@ -24,30 +105,30 @@
         <div id="nav">
             <table border="0" cellspacing="1" cellpadding="5">
                 <tr>
-                    <td><button type="button">个人信息</button></td>
+                    <td><button id="checkUInfo" type="button">个人信息</button></td>
                 </tr>
 
                 <tr>
-                    <td><button type="button">订阅信息</button></td>
+                    <td><button id="checkJournal" type="button">订阅信息</button></td>
                 </tr>
 
                 <tr>
-                    <td><button type="button">修改信息</button></td>
+                    <td><button id="changeUInfo" type="button">修改信息</button></td>
                 </tr>
 
                 <tr>
-                    <td><button type="button">订阅报刊</button></td>
+                    <td><button id="changeJournal" type="button">订阅报刊</button></td>
                 </tr>
 
                 <tr>
-                    <td><button type="button">撤销订阅</button></td>
+                    <td><button id="deleteJournal" type="button">撤销订阅</button></td>
                 </tr>
             </table>
         </div>
 
         <div id="content">
             <!-- JSP预备！！！呼呼呼！！！ -->
-            <jsp:include page="Part/Show_select.jsp"/>
+
         </div>
 
 

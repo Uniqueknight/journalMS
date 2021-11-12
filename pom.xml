@@ -61,17 +61,31 @@
         </dependency>
 
 
+<!--        <dependency>-->
+<!--            <groupId>taglibs</groupId>-->
+<!--            <artifactId>standard</artifactId>-->
+<!--            <version>1.1.2</version>-->
+<!--        </dependency>-->
+
+<!--        <dependency>-->
+<!--            <groupId>apache-taglibs</groupId>-->
+<!--            <artifactId>jstl</artifactId>-->
+<!--            <version>1.1.2</version>-->
+<!--        </dependency>-->
+
+
         <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>standard</artifactId>
-            <version>1.1.2</version>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-spec</artifactId>
+            <version>1.2.1</version>
         </dependency>
 
         <dependency>
-            <groupId>apache-taglibs</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.1.2</version>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-impl</artifactId>
+            <version>1.2.1</version>
         </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/org.webjars.bower/jquery -->
         <dependency>
@@ -80,6 +94,11 @@
             <version>3.6.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+            <version>2.3.3</version>
+        </dependency>
 
     </dependencies>
 
