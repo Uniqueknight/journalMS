@@ -1,6 +1,7 @@
 package com.example.journalMS.dao.impl;
 
 import com.example.journalMS.dao.journalDao;
+import com.example.journalMS.domain.jourUser;
 import com.example.journalMS.domain.journal;
 import com.example.journalMS.util.JdbcUtil;
 
@@ -131,7 +132,40 @@ public class journalDaoImpt implements journalDao {
     }
 
 
-
+    public List<journal> select(String jourName) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            // 1.????????
+            // 2.?????????
+            conn = JdbcUtil.getConn();
+            // 3.???????
+            String sql = "select * from jouruser where jourName = ? ";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, jourName);
+            // 4.??????
+            rs = ps.executeQuery();
+            List<journal> list = new ArrayList<journal>();
+            while (rs.next()) {
+                journal jour = new journal(
+                        rs.getString("jourName"),
+                        rs.getString("jourNum"),
+                        rs.getString("jourType"),
+                        rs.getString("jourPrice"),
+                        rs.getString("jourYear"),
+                        rs.getString("jourPart"));
+                list.add(jour);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 5.??????
+            JdbcUtil.close(conn, ps, rs);
+        }
+        return null;
+    }
 
 
 

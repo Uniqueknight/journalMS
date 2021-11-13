@@ -7,8 +7,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "uDeleteJournalServlet", value = "/uDeleteJournalServlet")
-public class uDeleteJournalServlet extends HttpServlet {
+@WebServlet(name = "uAddJournalServlet", value = "/uAddJournalServlet")
+public class uAddJournalServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
@@ -20,7 +20,7 @@ public class uDeleteJournalServlet extends HttpServlet {
         String jourName = request.getParameter("jourName");
 
         uCenterServiceImpt uCenterServiceImpt = new uCenterServiceImpt();
-        uCenterServiceImpt.deleteJournal(jourName,userName);
+        uCenterServiceImpt.addJournal(jourName,userName);
         request.getRequestDispatcher("userCenter.jsp").forward(request,response);
     }
 }

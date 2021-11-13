@@ -13,19 +13,36 @@
     <title>Title</title>
 </head>
 <body>
-    WRNXRBB
-
-
-<table>
-    <tr>
-        <td>用户名称</td>
-        <td>${}</td>
-    </tr>
-</table>
-
-
-
-
+        <table border="" cellspacing="" cellpadding="" border="2" cellpadding="5px" width="300px">
+            <tr>
+                <td>用户名</td>
+                <td>${userInfo.userName}</td>
+            </tr>
+            <tr>
+                <td>密码</td>
+                <td>${userInfo.passWord}</td>
+            </tr>
+            <tr>
+                <td>性别</td>
+                <td>${userInfo.sex}</td>
+            </tr>
+            <tr>
+                <td>邮箱</td>
+                <td>"${userInfo.email}</td>
+            </tr>
+            <tr>
+                <td>手机号码</td>
+                <td>${userInfo.phone}</td>
+            </tr>
+            <tr>
+                <td>城市</td>
+                <td>${userInfo.city}</td>
+            </tr>
+            <tr>
+                <td>年龄</td>
+                <td>${userInfo.age}</td>
+            </tr>
+        </table>
 
 </body>
 </html>

@@ -3,12 +3,12 @@ package com.example.journalMS.domain;
 public class jourUser {
     private String jourName;
     private String userName;
-    private String num;
+    private int num;
 
     public jourUser() {
     }
 
-    public jourUser(String jourName, String userName, String num) {
+    public jourUser(String jourName, String userName, int num) {
         this.jourName = jourName;
         this.userName = userName;
         this.num = num;
@@ -30,11 +30,11 @@ public class jourUser {
         this.userName = userName;
     }
 
-    public String getNum() {
+    public int getNum() {
         return num;
     }
 
-    public void setNum(String num) {
+    public void setNum(int num) {
         this.num = num;
     }
 

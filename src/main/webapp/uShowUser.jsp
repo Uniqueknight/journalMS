@@ -6,14 +6,15 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%--<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>--%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
 
-<table>
+<table border="" cellspacing="" cellpadding="" border="2" cellpadding="5px" width="300px">
     <tr>
         <td>用户名</td>
         <td>${userInfo.userName}</td>
@@ -31,7 +32,7 @@
         <td>${userInfo.email}</td>
     </tr>
     <tr>
-        <td>手机号</td>
+        <td>手机号码</td>
         <td>${userInfo.phone}</td>
     </tr>
     <tr>
@@ -41,9 +42,6 @@
     <tr>
         <td>年龄</td>
         <td>${userInfo.age}</td>
-    </tr>
-    <tr>
-        <td colspan="2"><a href="uChangeUser.jsp.jsp">修改</a></td>
     </tr>
 </table>
 

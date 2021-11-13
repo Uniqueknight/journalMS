@@ -19,7 +19,6 @@
             //用户名文本框绑定失去焦点事件
 
             $("#checkUInfo").click(function (){
-                alert("qnmd");
                 $.ajax({
                     url:"uCheckUInfoServlet",
                     type:"post",
@@ -41,51 +40,42 @@
             <%--    // })--%>
             <%--})--%>
 
-            <%--$("#checkJournal").click(function (){--%>
-            <%--    // alert("qnmd");--%>
-            <%--    $.ajax({--%>
-            <%--        url: "uCheckJournalServlet",--%>
-            <%--        type: "post",--%>
-            <%--        success:function (data){--%>
-            <%--            $("#content").html(data);--%>
-            <%--        }--%>
-            <%--    })--%>
-            <%--})--%>
+            $("#checkJournal").click(function (){
+                $.ajax({
+                    url: "uCheckJournalServlet",
+                    type: "post",
+                    dataType: "text",
+                    success:function (data){
+                        $("#content").html(data);
+                    }
+                })
+            })
 
-            <%--$("#changeUInfo").click(function (){--%>
-            <%--    // alert("qnmd");--%>
-            <%--    $.ajax({--%>
-            <%--        url: "uChangeUInfo",--%>
-            <%--        type: "post",--%>
-            <%--        data:{username:${sessionScope.userName}},--%>
-            <%--        success:function (data){--%>
-            <%--            alert(${sessionScope.userName})--%>
-            <%--            $("#content").html(data);--%>
-            <%--        }--%>
-            <%--    })--%>
-            <%--})--%>
+            $("#changeUInfo").click(function (){
+                // alert("qnmd");
+                $.ajax({
+                    url: "uShowChangeUinfoServlet",
+                    type: "post",
+                    dataType: "text",
+                    success:function (data){
+                        $("#content").html(data);
+                    }
+                })
+            })
 
-            <%--$("#changeJournal").click(function (){--%>
-            <%--    // alert("qnmd");--%>
-            <%--    $.ajax({--%>
-            <%--        url: "uChangeJournalServlet",--%>
-            <%--        type: "post",--%>
-            <%--        success:function (data){--%>
-            <%--            $("#content").html(data);--%>
-            <%--        }--%>
-            <%--    })--%>
-            <%--})--%>
+            $("#changeJournal").click(function (){
+                // alert("qnmd");
+                $.ajax({
+                    url: "uShowGetJournalServlet",
+                    type: "post",
+                    dataType:"text",
+                    success:function (data){
+                        $("#content").html(data);
+                    }
+                })
+            })
 
-            <%--$("#deleteJournal").click(function (){--%>
-            <%--    // alert("qnmd");--%>
-            <%--    $.ajax({--%>
-            <%--        url: "uDeleteJournalServlet",--%>
-            <%--        type: "post",--%>
-            <%--        success:function (data){--%>
-            <%--            $("#content").html(data);--%>
-            <%--        }--%>
-            <%--    })--%>
-            <%--})--%>
+
 
 
         });
@@ -117,11 +107,11 @@
                 </tr>
 
                 <tr>
-                    <td><button id="changeJournal" type="button">订阅报刊</button></td>
+                    <td><button id="changeJournal" type="button">可订报刊</button></td>
                 </tr>
 
                 <tr>
-                    <td><button id="deleteJournal" type="button">撤销订阅</button></td>
+                    <td><button id="logout" type="button" onclick="window.location.href='${pageContext.request.contextPath}/logoutServlet'">注销登出</button></td>
                 </tr>
             </table>
         </div>

@@ -46,7 +46,7 @@ public class jourUserDaoImpt implements jourUserDao {
     @Override
     public void save(jourUser jusr) {
         String sql = "insert into jourUser(jourName,userName,num) values (?,?,?)";
-        this.executeUpdate(sql, jusr.getJourName(), jusr.getUserName(),jusr.getUserName());
+        this.executeUpdate(sql, jusr.getJourName(), jusr.getUserName(),jusr.getNum());
     }
 
     @Override
@@ -55,11 +55,17 @@ public class jourUserDaoImpt implements jourUserDao {
         this.executeUpdate(sql, jourName,userName);
     }
 
+
+    //更新-->若不存在num，则默认为num
+    //但既然是update，这必然是存在num的
+    //但如果不想改动num呢？
     @Override
     public void update(String jourName, String userName , jourUser jusr) {
         String sql = "update jourUser set jourName=?,userName=?,num = ? where jourName = ? and userName = ?";
         this.executeUpdate(sql, jusr.getJourName(), jusr.getUserName(), jusr.getNum(),jourName,userName);
     }
+
+
 
     @Override
     public jourUser get(String jourName , String userName) {
@@ -79,7 +85,7 @@ public class jourUserDaoImpt implements jourUserDao {
             rs = ps.executeQuery();
             if (rs.next()) {
                 jourUser jusr = new jourUser(rs.getString("jourName"),rs.getString("userName"),
-                        rs.getString("num"));
+                        rs.getInt("num"));
                 return jusr;
             }
         } catch (Exception e) {
@@ -112,7 +118,7 @@ public class jourUserDaoImpt implements jourUserDao {
                 jourUser jusr = new jourUser(
                         rs.getString("jourName"),
                         rs.getString("userName"),
-                        rs.getString("num"));
+                        rs.getInt("num"));
                 list.add(jusr);
             }
             return list;
@@ -150,6 +156,55 @@ public class jourUserDaoImpt implements jourUserDao {
 
         return false;
     }
+
+
+    public List<jourUser> select( String userName) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            // 1.????????
+            // 2.?????????
+            conn = JdbcUtil.getConn();
+            // 3.???????
+            String sql = "select * from jouruser where  userName = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, userName);
+            // 4.??????
+            rs = ps.executeQuery();
+            List<jourUser> list = new ArrayList<jourUser>();
+            while (rs.next()) {
+                jourUser jusr = new jourUser(
+                        rs.getString("jourName"),
+                        rs.getString("userName"),
+                        rs.getInt("num"));
+                list.add(jusr);
+            }
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // 5.??????
+            JdbcUtil.close(conn, ps, rs);
+        }
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
