@@ -61,7 +61,7 @@ public class journalDaoImpt implements journalDao {
     }
 
     @Override
-    public journal get(String useName) {
+    public journal get(String jourName) {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -72,7 +72,7 @@ public class journalDaoImpt implements journalDao {
             // 3.�������
             String sql = "select * from journal where jourName = ?";
             ps = conn.prepareStatement(sql);
-            ps.setString(1, useName);
+            ps.setString(1, jourName);
             // 4.ִ�����
             rs = ps.executeQuery();
             if (rs.next()) {

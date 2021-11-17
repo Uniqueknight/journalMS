@@ -1,6 +1,7 @@
 import com.example.journalMS.dao.impl.jourUserDaoImpt;
 import com.example.journalMS.dao.impl.journalDaoImpt;
 import com.example.journalMS.domain.journal;
+import com.example.journalMS.domain.payment;
 import com.example.journalMS.domain.userInfo;
 import com.example.journalMS.service.impl.uCenterServiceImpt;
 import org.junit.Before;
@@ -43,6 +44,12 @@ public class JdbcAdTest {
     public void testChangeUserInfo(){
         userInfo userInfo = new userInfo("test", "testChange", "ew", "ew", "ew", "ew", "ew");
         new uCenterServiceImpt().changeUserInfo(userInfo);
+    }
+
+    @Test
+    public void testPayment(){
+        List<payment> root = new uCenterServiceImpt().getPayment("root");
+        System.out.println(root);
     }
 
 }

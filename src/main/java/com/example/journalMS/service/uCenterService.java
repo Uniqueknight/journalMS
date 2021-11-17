@@ -1,6 +1,7 @@
 package com.example.journalMS.service;
 
 import com.example.journalMS.domain.journal;
+import com.example.journalMS.domain.payment;
 import com.example.journalMS.domain.userInfo;
 
 import java.util.List;
@@ -27,7 +28,11 @@ public interface uCenterService {
     //获得当前用户所订阅的信息
     public List<journal> getUserJournal(String userName);
 
-
+    //计算当前用户特定书籍的金额
+    //需要XX来得到两张表（userName && jourName）
+    //jourName是变化的，userName是固定的，传个List<jourName>???
+    //价格本质上是Num x price ，难点在于获取两张表中的数据，还要按顺序返回，咋搞？
+    public  List<payment> getPayment(String userName);
 
 
 

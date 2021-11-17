@@ -25,6 +25,7 @@ public class uShowGetJournalServlet extends HttpServlet {
         journalDaoImpt journalDaoImpt = new journalDaoImpt();
         List<journal> journalList = journalDaoImpt.getAll();
 
+
         request.setAttribute("journalList",journalList);
         request.getRequestDispatcher("uShowGetJournal.jsp").forward(request,response);
     }
